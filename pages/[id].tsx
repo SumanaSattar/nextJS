@@ -14,11 +14,9 @@ export default function Home() {
   const fetchCar = async () => {
     const response = await fetch(`/api/cars/${id}`);
     const data = await response.json();
-    console.log({ data: data });
     setCar(data);
   };
 
-  console.log(car);
 
   useEffect(() => {
     fetchCar();
@@ -26,9 +24,6 @@ export default function Home() {
 
   return (
     <div>
-    
-
-      
         {car && (
           <div className="container mt-5" style={{ display: "flex" }}>
             <Image  src={require(`../public${car.imageUrl}`)} alt={car.modelName} className='card-container_image card-img-top' />
@@ -39,7 +34,6 @@ export default function Home() {
             </div>
           </div>
         )}
-      
     </div>
   );
 }

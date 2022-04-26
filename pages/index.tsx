@@ -1,6 +1,6 @@
 import React from "react";
 import Card from "../src/components/Card/card";
-import type {  NextPage } from "next";
+import type { NextPage } from "next";
 import { useEffect, useState } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -25,53 +25,47 @@ const responsive = {
     partialVisibilityGutter: 40
   }
 };
-const Home:NextPage=()=> {
-    
-    const [cars, setCars] = useState<cars[]>([]);
-    const fetchCars = async () => {
-      const response = await fetch("/api/cars");
-      const data = await response.json();
-    
-      setCars(data);
-    };
-  
-    useEffect(() => {
-      fetchCars();
-      }, []);
+const Home: NextPage = () => {
+
+  const [cars, setCars] = useState<cars[]>([]);
+  const fetchCars = async () => {
+    const response = await fetch("/api/cars");
+    const data = await response.json();
+
+    setCars(data);
+  };
+
+  useEffect(() => {
+    fetchCars();
+  }, []);
   return (
-   <>
-     <div
-     
-  style={{
-    position: 'relative',
-    marginTop:'29px',
-    marginLeft:'30px'
-  }}
->
-<Carousel 
-      swipeable={false}
-      draggable={false}
-      autoPlay={false}
-      autoPlaySpeed={10000}
-      ssr={true}
-      arrows={false}
-      containerClass="container-padding-bottom"
-      customButtonGroup={<Button />}
-      renderButtonGroupOutside
-      responsive={responsive}>
-      {cars.map((car:cars,index)=>(
-         <Card modelName={car.modelName} bodyType= {car.bodyType} modelType={car.modelType} imageUrl={car.imageUrl} key={car.id} id={car.id} />
-      ))}
-      </Carousel>
-     
+    <>
+      <div
+        style={{
+          position: 'relative',
+          marginTop: '29px',
+          marginLeft: '30px'
+        }}
+      >
+        <Carousel
+          swipeable={false}
+          draggable={false}
+          autoPlay={false}
+          autoPlaySpeed={10000}
+          ssr={true}
+          arrows={false}
+          containerClass="container-padding-bottom"
+          customButtonGroup={<Button />}
+          renderButtonGroupOutside
+          responsive={responsive}>
+          {cars.map((car: cars, index) => (
+            <Card modelName={car.modelName} bodyType={car.bodyType} modelType={car.modelType} imageUrl={car.imageUrl} key={car.id} id={car.id} />
+          ))}
+        </Carousel>
 
-</div>
-      
-        
-       
 
-    
-   </>
+      </div>
+    </>
   );
 }
 
